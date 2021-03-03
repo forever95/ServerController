@@ -1,0 +1,15 @@
+{
+  "name": "ServerControlService",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "node index.js"
+  },
+  "keywords": [],
+  "author": "Shuhratjon",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.4.3"
+  }
+}
