@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "Shuhratjon",
   "license": "ISC",
-  "dependencies": {
-    "ws": "^7.4.3"
-  }
+  "dependencies": {}
 }
