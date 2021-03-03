@@ -1,4 +1,4 @@
-const Service = require('./service')
+import { Service } from './service'
 
 async function main() {
     //todo: transport and cluster are initialized before calling to Service
