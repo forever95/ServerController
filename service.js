@@ -11,37 +11,23 @@ class Service {
     }
 
     async start() {
-        if( this.isClusterMode ) {
-            if( this.isMaster ) {
-                await this.startCluster();
-                if( this.transport.isPermanentConnection ) {
-                    await this.startTransport();
-                }
-            }
-            else {
-                await this.startWorker();
-                if( !this.transport.isPermanentConnection ) {
-                    await this.startTransport();
-                }
-            }
-        }
-        else {
-            await this.startWorker();
+        await this.startCluster();
+        await this.startWorker();
+        if( this.transport.isPermanentConnection ) {
             await this.startTransport();
         }
     }
 
     async stop() {
         this.worker.kill();
-        if(this.isClusterMode) {
-            for (const id in this.clusterOptions.workers) {
-                this.clusterOptions.workers[id].kill()
-            }
+        for (const id in this.clusterOptions.workers) {
+            this.clusterOptions.workers[id].kill()
         }
     }
 
     async startTransport() {
         //todo: логика запуска транспорта
+        await this.transport.startTransport()
         this.transport.on('message', message => {
             this.worker.send(message);
         })
